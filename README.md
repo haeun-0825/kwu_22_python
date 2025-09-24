@@ -28,24 +28,24 @@
   - 로컬(컴퓨터, 노트북)-글로벌(website)
   - Repository가 로컬, 글로벌에 존재해야함
 
-
+#### 깃 상태 확인
   - git status : git Repository 현재 상태 확인
-##### 새로운 환경 구축
+#### 새로운 환경 구축
   - git init . : git Repository 생성(로컬)
   - git remote -v : 원격 Repository 연결 상태 확인(글로벌)
   - git remote add origin [URL] : 로컬과 글로벌 Repository 연결(글로벌)
   - git branch -M main : Master branch → main branch 변경(github(글로벌)은 main, 로컬(컴퓨터)이 main에 맞춰야함)
-##### 파일 버전관리목록(로컬) 추가
+#### 파일 버전관리목록(로컬) 추가
   - git add [file] : 해당 파일을 버전관리 목록 추가
   - git add . : 현재 경로의 모든 파일을 버전관리 목록 추가
   - git add ~는 commit에 포함할 파일들을 선택
   - git commit -m "내용" : 버전 생성
   - git add와 commit 로컬에서 행위(글로벌 변화 X)
   - git commit ~은 선택된 파일들을 확정적으로 저장소에 기록
-##### 권한 추가
+#### 권한 추가
   - git config --global user.name [github 이름] (대괄호 제외)
   - git config --global user. email [github 이메일] (대괄호 제외)
-##### 글로벌에 업로드
+#### 글로벌에 업로드
   - git push origin main : Local의 commit으로 생성한 버전을 글로벌에 업로드
-##### 코드 내려받기
+#### 코드 내려받기
   - git pull origin main : 글로벌의 main 코드를 내려받기
