@@ -27,7 +27,6 @@
   - Github는 Git이라고 하는 버전관리도구를 손쉽게 사용할 수 있는 플랫폼(Git설치) / git -v cmd에서 (버전)확인 가능
   - 로컬(컴퓨터, 노트북)-글로벌(website)
   - Repository가 로컬, 글로벌에 존재해야함
-
 #### 깃 상태 확인
   - git status : git Repository 현재 상태 확인
 #### 새로운 환경 구축
