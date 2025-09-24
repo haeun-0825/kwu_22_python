@@ -1,11 +1,13 @@
 # 문자열의 이해(String)
 
+
 # 1. 문자열 인덱스(index)
 #  - 문자열은 각 문자마다 순서(인덱스)가 있음
 #  - 첫번째 문자부터 마지막 문자까지 순차적으로 인덱스
 #  - 인덱스 시작은 0
 #  - 인덱스는 공백 포함
 print("python")
+
 
 # 2. 문자 추출
 #  - 인덱스를통해 문자(문자열X) 추출
@@ -15,11 +17,13 @@ print(lang[0])  # P
 print(lang[2])  # t
 # print(lang[10])  # IndexError: string index out of range
 
+
 # 3. 역 인덱스(Reverse index)
 #  - 인덱스(좌 → 우, 0 시작)
 #  - 역 인덱스(우 → 좌, -1 시작)
 print(lang[-1])  # n
 print(lang[-3])  # h
+
 
 # 4. 문자열 추출(슬라이싱)
 #  - lang[0]: 문자 추출
@@ -33,6 +37,7 @@ print(msg[3:])  # 끝 생략(끝까지)
 print(msg[:])  # 시작, 끝 생략(처음부터 끝까지)
 # 예: email 가입
 #  kwu123@kwu.ac.kr 가입
+
 
 # 5. 문자열 함수(꼭 알고 계셔야 겠죠?)
 str = "Hello World"
@@ -61,6 +66,7 @@ print("Hello" in str)  # True
 print(str.find("o"))  # 4
 print(str.rfind("o"))  # 7
 print(str.find("World"))  # 6, 단어의 첫글자 인덱스
+
 
 # 6. f-string
 grade = 4
