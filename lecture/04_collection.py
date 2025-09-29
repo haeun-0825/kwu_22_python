@@ -117,7 +117,7 @@ a.pop("Japan")
 a = {"a":1, "b":2}
 b = {"a":2, "c":5}
 a.update(b)
-pritn(a)  # {"a":2, "b":2, "c":5}
+print(a)  # {"a":2, "b":2, "c":5}
 
 # clear()
 #  - 딕셔너리의 모든 값을 초기화
