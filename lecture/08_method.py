@@ -64,3 +64,46 @@ print(result)
 # ** 타입 힌트(Type Hint) **
 #   - parameter와 return값의 타입을 미리 적어두기
 #   - 안적어도 실행하는데 문제 없음(단순 가독성)
+
+# ** 변수의 범위 **
+#   - 변수가 참조 가능한 코드상의 범위를 명시
+#   - 함수내의 변수는 자신이 속한 코드 블록이 종료되면 소멸  *중요*
+#   - 특정 코드블록에서 선언된 변수를 "지역변수"
+#   - 가장 상단에 정의되어 프로그램 종료 전까지 유지되는 변수를 "전역변수"
+#   - 파이썬 코드 내에서는 동일한 이름의 변수명 사용불가
+#     단, 지역변수와 전역변수의 경우 동일한 이름 사용 가능
+#     → 변수의 사용 범위가 다르기 때문
+#   - 동일한 이름의 지역변수와 전역변수가 존재하는 경우 
+#     가까운(지역변수) 변수가 우선순위 높음
+
+num1 = 10  # 전역
+num2 = 20  # 전역
+
+def test(num1):
+    num2 = 50  # 지역
+    print(num1, num2)  # 30 50 출력
+    return
+
+test(30)
+print(num1, num2)  # 10 20 출력
+
+# ** 가변 길이 인자 **
+#   - 전달되는 parameter 개수가 고정적이지 않은 경우
+#   - print(), format() 등
+
+print(1)
+print(1, 2)
+print(1, 2, 3)
+
+# 1) *args: tuple
+def test(*args):
+    for item in args:
+        print(item)
+test(10, 20, 30)
+
+# 2) **kwargs: dict
+def test2(**kwargs):
+    for key, value in kwargs.items():
+        print(key, value)
+test2(a=1, b=2, c=3)
+# *: 튜플 / **: 딕트 타입으로 전달
