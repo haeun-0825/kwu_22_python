@@ -8,11 +8,11 @@ while True:
         break
     
 # 구구단 2단 while문
-for i in range(1, 9):
+for i in range(1, 10):
     print(f"2x{i}={2*i}")
     
 i = 1
-while i < 10:
+while i < 10:                                                                 
     print(f"2x{i}={2*i}")
     i += 1  # i = i+1
     

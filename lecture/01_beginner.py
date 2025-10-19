@@ -10,7 +10,7 @@
 #  - 예약어 사용 불가 : print, if, else, while, for, ... 사용 금지
 
 
-# 3. 명명 함수(Naming Mathod) - 외우셔야 됩니다. 에러가 나지는X, 하지만 지켜야함. 개발자들끼리의 규칙
+# 3. 명명 함수(Naming Method) - 외우셔야 됩니다. 에러가 나지는X, 하지만 지켜야함. 개발자들끼리의 규칙
 #  - PascalCase : UniversityStudentName - 합성어의 모든 첫 글자 대문자, 나머진 소문자
 #  - camelCase  : universityStudentName - 첫 글자는 소문자, 그 다음 합성어 첫 글자 대문자
 #  - snake_case : university_student_name - 전부 소문자, 언더바(_) 
@@ -36,7 +36,7 @@
 
 # 5. print()
 # - 이름 옆에 ()붙어 있으면 함수
-# - ()안에 있는 함수 출력
+# - ()안에 있는 인수(매개변수) 출력
 print("Hello")
 print(123)
 

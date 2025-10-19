@@ -44,13 +44,13 @@ else:
 # 문제: 학점 계산기
 score = 4.0
 
-if score > 4.1 and score <= 4.5:
+if score >= 4.1 and score <= 4.5:
     print("A")
-elif score > 3.6 and score <= 4.0:
+elif score >= 3.6 and score <= 4.0:
     print("B")
-elif score > 3.1 and score <= 3.5:
+elif score >= 3.1 and score <= 3.5:
     print("C")
-elif score > 2.6 and score <= 3.0:
+elif score >= 2.6 and score <= 3.0:
     print("D")
 else:
     print("F")

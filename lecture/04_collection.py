@@ -1,6 +1,6 @@
 # Collection type
 #  - 여러값을 저장하고 싶은 경우 사용
-#  - 리스트(List)[], 튜플(Tuple)() 튜플은 값을 한번 만들면 바꾸지 못함 -> 다시 만들어야 함(immuabale), (순서O)
+#  - 리스트(List)[], 튜플(Tuple)() 튜플은 값을 한번 만들면 바꾸지 못함 -> 다시 만들어야 함(immutable), (순서O)
 #  - 딕셔너리(Dictionary){}, 세트(Set){} (순서X)
 
 # * 순서가 있는 자료형 = 시퀀스 자료형: List, Tuple
