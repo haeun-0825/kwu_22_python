@@ -1,0 +1,11 @@
+python-dotenv
+pandas
+numpy
+requests
+langchain-community
+langchain-openai
+langchain
+langgraph
+openpyxl
+pymongo
+pymysql
