@@ -27,7 +27,7 @@ _ = load_dotenv(find_dotenv())
 # 2. LLM 모델
 llm = ChatOpenAI(
     model = "gpt-4.1-mini", 
-    api_key = os.getenv("OPEN_API_KEY"), 
+    api_key = os.getenv("OPENAI_API_KEY"), 
     temperature = 0.2, 
 )
 
@@ -52,7 +52,7 @@ def get_history(session_id: str) -> ChatMessageHistory:
     return _store[session_id]
 
 # 3. Prompt 작성
-system_prompt = """아
+system_prompt = """
     너는 사용자의 질문에 도움을 주는 어시스턴트야.
     사용자의 질문에 대한 답변을 생성해줘.
 """
