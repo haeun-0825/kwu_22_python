@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>GTFO</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        .wrap {
+            height: calc(100vh - 6.5rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 1rem;
+            overflow: hidden;
+        }
+        .wrap_chat {
+            width: 39rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.4rem 1rem 0 rgba(0,0,0,0.2), 0 0.4rem 2rem 0 rgba(0,0,0,0.19);
+            overflow: hidden;
+        }
+        .chat_title{
+            color: white;
+            font-size: 1.8rem;
+            background-image: linear-gradient(to right, #3d0000, #5d0009, #7e000c, #a0000a, #c20000);
+            font-weight: bold;
+            padding: 0.7rem 0 0.7rem 1.5rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            height: 3.5rem;
+        }
+        .chat_box {
+            background-color: white;
+        }
+        .msg_box {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.6rem 1.4rem;
+            height: 51rem;
+            overflow-y: auto;
+        }
+        .msg_input_box {
+            display: flex;
+            background-color: white;
+            height: 4.6rem;
+            border: 0.3rem solid #e01515;
+            border-radius: 2.5rem;
+            padding: 0 .5rem;
+        }
+        .msg_input {
+            padding: 1rem;
+        }
+        .msg_input input {
+            width: 35rem;
+            height: 4rem;
+            border: none;
+            outline: none;
+            font-size: 1.6rem;
+            border-radius: 2.5rem;
+            color: #2F3138;
+            padding-left: 1rem;
+        }
+        .msg_input button {
+            border-radius: 2.5rem;
+            width: 4rem;
+            height: 4rem;
+            border: none;
+            padding: 0;
+            background-color: white;
+            cursor: pointer;
+            color: #1e90ff;
+            font-size: 1.8rem;
+        }
+        .msg_input button:disabled,
+        .msg_input input:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .chat_msg_box {
+            display: flex;
+        }
+        .chat_msg_box.human {
+            justify-content: flex-end;
+        }
+        .chat_msg_box_left {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .chat_msg_box_right {
+            max-width: 32.2rem;
+            padding-left: 0.7rem;
+            font-size: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            position: relative;
+        }
+        .human .chat_msg_box_right {
+            padding-right: 0.7rem;
+            padding-left: 0;
+        }
+        .logo-s {
+            width: 4rem;
+            height: 4rem;
+            background-image: url("./images/icon.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: #d7fcff;
+        }
+        .chat_msg_date {
+            width: 7rem;
+            position: absolute;
+            font-size: 1.1rem;
+        }
+        .ai .chat_msg_date {
+            left: 1rem;
+        }
+        .human .chat_msg_date {
+            right: 0;
+            text-align: right;
+        }
+        .chat_msg_info {
+            margin-top: 1.7rem;
+            color: black;
+            background-color: #ffeecb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-grow: 0;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+        .human .chat_msg_info {
+            background-color: #fbf8f8;
+            color: black;
+        }
+        .dot-animation-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+        }
+        .dot-animation {
+            width: 8px;
+            height: 8px;
+            background-color: #333;
+            border-radius: 50%;
+            animation: loading-dot 1.2s infinite;
+            opacity: 0;
+        }
+        .dot-animation:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .dot-animation:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .dot-animation:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        @keyframes loading-dot {
+            0%, 80%, 100% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wrap {
+                height: 100vh;
+                padding: 1.5rem;
+                align-items: stretch;
+            }
+
+            .wrap_chat {
+                width: 100%;
+            }
+
+            .msg_box {
+                height: calc(100vh - 13rem);
+                padding: 1rem;
+            }
+
+            .msg_input {
+                padding: 1rem;
+            }
+
+            .msg_input input {
+                font-size: 1.4rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="wrap_chat">
+            <div class="chat_title">
+                <span>GTFO</span>
+            </div>
+            <div class="chat_box">
+                <div class="msg_box" id="msgBox">
+                    <!-- JS에서 메시지 렌더링 -->
+                </div>
+                <div class="msg_input">
+                    <form class="msg_input_box" id="chatForm">
+                        <input id="send_chat_input" type="text" autocomplete="off" />
+                        <button id="send_chat_btn" type="submit" aria-label="Send message">
+                            <i class="fa-solid fa-gun fa-flip-horizontal" style="color: #e01515;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM이 다 만들어진 뒤 실행되도록 래핑
+        document.addEventListener('DOMContentLoaded', () => {
+            // 상태 변수
+            let messages = [];
+            let isSending = false;
+            let isTyping = false;
+            let aiPlaceholderIndex = -1;
+
+            const msgBox = document.getElementById('msgBox');
+            const chatForm = document.getElementById('chatForm');
+            const chatInput = document.getElementById('send_chat_input');
+            const sendBtn = document.getElementById('send_chat_btn');
+
+            function getCurrentTime() {
+                return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            // 초기 AI 메시지
+            function initMessages() {
+                messages = [
+                    {
+                        sender: 'ai',
+                        text: '안녕하세요 GTFO 공략 ChatBot입니다. 무엇이든 물어보세요.',
+                        time: getCurrentTime()
+                    }
+                ];
+                renderMessages();
+                scrollToBottom();
+            }
+
+            // 메시지 렌더링
+            function renderMessages() {
+                msgBox.innerHTML = '';
+
+                messages.forEach((message, index) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('chat_msg_box', message.sender);
+
+                    // AI일 때 왼쪽 로고
+                    if (message.sender === 'ai') {
+                        const left = document.createElement('div');
+                        left.classList.add('chat_msg_box_left');
+
+                        const logo = document.createElement('div');
+                        logo.classList.add('logo-s');
+                        left.appendChild(logo);
+
+                        wrapper.appendChild(left);
+                    }
+
+                    const right = document.createElement('div');
+                    right.classList.add('chat_msg_box_right');
+
+                    const timeSpan = document.createElement('span');
+                    timeSpan.classList.add('chat_msg_date');
+                    timeSpan.textContent = message.time;
+                    right.appendChild(timeSpan);
+
+                    const infoSpan = document.createElement('span');
+                    infoSpan.classList.add('chat_msg_info');
+
+                    // 마지막 메시지이고, AI이고, isTyping이면 로딩 점 표시
+                    if (
+                        isTyping &&
+                        index === messages.length - 1 &&
+                        message.sender === 'ai' &&
+                        !message.text
+                    ) {
+                        const dotContainer = document.createElement('div');
+                        dotContainer.classList.add('dot-animation-container');
+
+                        for (let i = 0; i < 3; i++) {
+                            const dot = document.createElement('span');
+                            dot.classList.add('dot-animation');
+                            dotContainer.appendChild(dot);
+                        }
+                        infoSpan.appendChild(dotContainer);
+                    } else {
+                        infoSpan.textContent = message.text;
+                    }
+
+                    right.appendChild(infoSpan);
+                    wrapper.appendChild(right);
+                    msgBox.appendChild(wrapper);
+                });
+            }
+
+            // 스크롤 맨 아래로
+            function scrollToBottom() {
+                msgBox.scrollTop = msgBox.scrollHeight;
+            }
+
+            // 타자 효과로 AI 답변 출력
+            function typeWriter(reply, index) {
+                let accumulated = '';
+                let i = 0;
+                const interval = setInterval(() => {
+                    accumulated += reply[i];
+                    messages[index].text = accumulated;
+                    renderMessages();
+                    scrollToBottom();
+                    i++;
+                    if (i >= reply.length) {
+                        clearInterval(interval);
+                    }
+                }, 25);
+            }
+
+            async function sendChat(event) {
+                if (event) event.preventDefault();
+                if (isSending) return;
+
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) {
+                    chatInput.focus();
+                    return;
+                }
+
+                isSending = true;
+                chatInput.disabled = true;
+                sendBtn.disabled = true;
+
+                // 사용자 메시지 추가
+                messages.push({
+                    sender: 'human',
+                    text: userMessage,
+                    time: getCurrentTime()
+                });
+                chatInput.value = '';
+                renderMessages();
+                scrollToBottom();
+
+                // AI 플레이스홀더 추가 + 타이핑 표시
+                aiPlaceholderIndex = messages.length;
+                messages.push({
+                    sender: 'ai',
+                    text: '',
+                    time: getCurrentTime()
+                });
+                isTyping = true;
+                renderMessages();
+                scrollToBottom();
+
+                try {
+                    const res = await fetch("http://localhost:8000/api/ai/chat", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ message: userMessage }),
+                    });
+
+                    const data = await res.json();
+                    const reply = data.reply || '';
+
+                    // 로딩 점 제거
+                    isTyping = false;
+                    renderMessages();
+                    scrollToBottom();
+
+                    // 한 글자씩 출력
+                    typeWriter(reply, aiPlaceholderIndex);
+
+                } catch (e) {
+                    console.error("chat error", e);
+                    isTyping = false;
+                    if (messages[aiPlaceholderIndex]) {
+                        messages[aiPlaceholderIndex].text = "오류가 발생했습니다.";
+                    }
+                    renderMessages();
+                } finally {
+                    isSending = false;
+                    chatInput.disabled = false;
+                    sendBtn.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+            // 이벤트 등록
+            chatForm.addEventListener('submit', sendChat);
+
+            // 초기 설정
+            initMessages();
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>
