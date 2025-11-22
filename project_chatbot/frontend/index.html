@@ -23,10 +23,12 @@
             overflow: hidden;
         }
         .chat_title{
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.1rem;
             color: white;
             font-size: 1.8rem;
             background-image: linear-gradient(to right, #306998, #4682B4, #306998);
-            font-weight: bold;
+            font-weight: 450;
             padding: 0.7rem 0 0.7rem 1.5rem;
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
@@ -49,7 +51,7 @@
             display: flex;
             background-color: white;
             height: 4.6rem;
-            border: 0.2rem solid #3776ab;
+            border: 0.2rem solid #4B8BBE;
             border-radius: 2.5rem;
             padding: 0 .5rem;
             transition: border-color 0.3s;
@@ -75,14 +77,18 @@
             padding: 0;
             background-color: white;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: #3776ab;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
         }
         .msg_input button:hover {
         outline: none; /* 버튼 자체의 기본 테두리 제거 */
         }
         .msg_input button:hover i {
         color: #FFD43B;
+        transition: color 0.2s ease;
         }
         .msg_input button:disabled,
         .msg_input input:disabled {
@@ -96,8 +102,8 @@
             justify-content: flex-end;
         }
         .chat_msg_box_left {
-            width: 4rem;
-            height: 4rem;
+            width: 6rem;
+            height: 6rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -107,7 +113,7 @@
         .chat_msg_box_right {
             max-width: 32.2rem;
             padding-left: 0.7rem;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             display: flex;
             flex-direction: column;
             gap: 0.3rem;
@@ -118,8 +124,8 @@
             padding-left: 0;
         }
         .logo-s {
-            width: 4rem;
-            height: 4rem;
+            width: 6rem;
+            height: 6rem;
             background-image: url("./images/icon.png");
             background-size: cover;
             background-repeat: no-repeat;
@@ -143,7 +149,7 @@
         .chat_msg_info {
             margin-top: 1.7rem;
             color: #333;
-            background-color: #F0F8FF;
+            background-color: #def1ff;
             padding: 1.2rem;
             border-radius: 0.5rem;
             border-bottom-left-radius: 0; /* 말풍선 꼬리 느낌 */
@@ -155,7 +161,7 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .human .chat_msg_info {
-            background-color: #FFFDE7;
+            background-color: #FFE873;
             color: #333;
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0;
@@ -233,7 +239,7 @@
                     <form class="msg_input_box" id="chatForm">
                         <input id="send_chat_input" type="text" autocomplete="off" />
                         <button id="send_chat_btn" type="submit" aria-label="Send message">
-                            <i class="fa-solid fa-code"></i>
+                            <i class="fa-brands fa-python"></i>
                         </button>
                     </form>
                 </div>
