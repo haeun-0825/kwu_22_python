@@ -48,3 +48,28 @@
   - git push origin main : Local의 commit으로 생성한 버전을 글로벌에 업로드
 #### 코드 내려받기
   - git pull origin main : 글로벌의 main 코드를 내려받기
+
+
+## 2. Project Chatbot
+### 2-1. 구조
+ - frontend: 사용자 화면 인터페이스(프론트엔드와 에이아이가 직접적으로 연결 안됨 그래서 백엔드를 사용.)
+ - backend(ai, database를 관리. 내포하는 개념): 서비스 동작 과정
+ - ai(langchain)
+ - database
+
+### 2-2. frontend
+ - 웹 표준: HTML, CSS, Javascript
+ - → 프론트엔드 프레임워크: React.js, Vue.js, ...
+
+ ### 2-3. backend
+ - Python: Django(Web), Flask, FastAPI(AI)
+ - → FastAPI 점유율 ↑
+ - main(컨트롤 타워) → router(기능별 분류) → service(실제 동작) → crud(DB)
+
+### 2-4. Chatbot(AI)
+ - Langchain(프레임워크) + OpenAI GPT(model)
+ - → 고도화: LangChain + LangGrpah + Model
+
+### 2-5. Database
+ - PostgreSQL 사용(Hibrid DB)
+ -   ㄴ RDB + NoSQL

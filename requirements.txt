@@ -11,3 +11,5 @@ pymongo
 pymysql
 pypdf
 chromadb
+fastapi
+uvicorn
