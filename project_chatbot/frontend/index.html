@@ -392,14 +392,21 @@
                 scrollToBottom();
 
                 try {
-                    const res = await fetch("http://localhost:8000/api/ai/chat", {
+                    const res = await fetch("http://localhost:9000/api/chat", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ message: userMessage }),
+                        body: JSON.stringify(
+                            {
+                                "type": "text",
+                                "query": userMessage,
+                                "voice_path": "string",
+                                "session_id": "69a9680e-045c-4aba-a4e2-10cba9f8debc"
+                            }
+                        ),
                     });
 
                     const data = await res.json();
-                    const reply = data.reply || '';
+                    const reply = data.answer || '';
 
                     // 로딩 점 제거
                     isTyping = false;

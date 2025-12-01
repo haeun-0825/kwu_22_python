@@ -16,7 +16,7 @@ origins = [
 #   - 특정 도메인은 허용해주세요 → CORS 설정   
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # 개발 중이면 *, 배포 시 특정 도메인만 허용
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
