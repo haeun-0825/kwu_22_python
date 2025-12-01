@@ -1,5 +1,6 @@
 import os
 import uuid
+from uuid import UUID
 from dotenv import load_dotenv, find_dotenv
 
 from langchain_openai import ChatOpenAI
@@ -11,21 +12,18 @@ class ChatLLM:
     def __init__(self):
         _ = load_dotenv(find_dotenv())
         
-        llm = ChatOpenAI(
+        self.llm = ChatOpenAI(
             model = "gpt-4.1-mini", 
             api_key = os.getenv("OPENAI_API_KEY"), 
             temperature = 0.2, 
-        )  
-        session_id = str(uuid.uuid4())
-        _store = {}
+        )
+        self._store = {}
         
-        system_prompt = """
+        self.system_prompt = """
             너는 사용자의 질문에 도움을 주는 어시스턴트야.
             사용자의 질문에 대한 답변을 생성해줘.
         """
         
-    
-    def multiturn_chat(self, query: str) -> str:
         prompt = ChatPromptTemplate.from_messages([
             ("system", self.system_prompt),                        
             MessagesPlaceholder(variable_name="history"),       
@@ -34,16 +32,19 @@ class ChatLLM:
 
         base_chain = prompt | self.llm
 
-        chain = RunnableWithMessageHistory(
+        self.chain = RunnableWithMessageHistory(
             base_chain,
             get_session_history = self.get_history,
             input_messages_key = "query",
             history_messages_key = "history"
         )
+        
+    
+    def multiturn_chat(self, query: str, session_id: UUID) -> str:
 
-        result = chain.invoke(
+        result = self.chain.invoke(
             {"query": query},
-            config={"configurable": {"session_id": self.session_id}},
+            config={"configurable": {"session_id": session_id}},
         )
         
         return result.content
