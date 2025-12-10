@@ -73,3 +73,9 @@
 ### 2-5. Database
  - PostgreSQL 사용(Hibrid DB)
  -   ㄴ RDB + NoSQL
+
+#### 2-5-1. 구조
+ - DBMS(데이터베이스 관리 시스템) → MariaDB or PostgreSQL
+ -   ㄴ database → kwu : 프로젝트 단위
+ -        ㄴ Table → chat_history: 대화기록 저장 할 공간
+ -             ㄴ Column 4개: session_id, type(H or AI), message, regdate
