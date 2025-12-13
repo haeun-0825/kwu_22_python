@@ -6,15 +6,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Lexend+Deca:wght@100..900&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Nanum+Gothic&display=swap');
 
 /* 공통사항 */
 * { box-sizing: border-box; }
 html, body { font-size: 62.5%; }
 body {
-	font-family: 'Poppins', 'Nanum Gothic', sans-serif;
-	font-weight: 400;
-    font-style: normal;
+	font-family: 'Nanum Gothic', sans-serif;
 	margin: 0;
 	padding: 0;
 	color: #2F3138;
