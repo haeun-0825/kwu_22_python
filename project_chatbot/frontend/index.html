@@ -255,6 +255,8 @@
             let isSending = false;
             let isTyping = false;
             let aiPlaceholderIndex = -1;
+            // crypto.randomUUID()를 사용하여 고유한 세션 번호 생성
+            const sessionId = crypto.randomUUID();
 
             const msgBox = document.getElementById('msgBox');
             const chatForm = document.getElementById('chatForm');
@@ -400,7 +402,7 @@
                                 "type": "text",
                                 "query": userMessage,
                                 "voice_path": "string",
-                                "session_id": "69a9680e-045c-4aba-a4e2-10cba9f8debc"
+                                "session_id": sessionId // 위에서 생성한 변수를 할당
                             }
                         ),
                     });

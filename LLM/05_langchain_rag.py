@@ -49,6 +49,8 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+
 _ = load_dotenv(find_dotenv())
 api_key = os.getenv("OPENAI_API_KEY")
 
@@ -61,9 +63,18 @@ llm = ChatOpenAI(
 # RAG 프로세스
 #   1. 지식 베이스 생성
 #        ㄴ PDF파일 불러오기
-pdf_path = "./LLM/data/agent.pdf"
-docs = PyPDFLoader(pdf_path).load()  # PDF파일 불러옴
+
+# pdf_path = "./LLM/data/agent.pdf"
+# docs = PyPDFLoader(pdf_path).load()  # PDF파일 불러옴
 #        ㄴ 청크 단위로 분할하기
+
+loader = DirectoryLoader(
+    path="./lecture", 
+    glob="*.py", 
+    loader_cls=TextLoader
+)
+docs = loader.load()
+
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=100,
     chunk_overlap=20
@@ -109,11 +120,10 @@ system_prompt= """
     학생들의 질문에 대해 아래 제공된 <context>의 강의 내용을 바탕으로 답변해줘.
     
     [답변 가이드라인]
-    1. 말투는 친절하고 격려하는 어조로 해줘 (예: "좋은 질문이에요!", "~입니다").
-    2. 코드를 설명할 때는 초보자가 이해하기 쉽게 단계별로 설명해줘.
-    3. <context>에 없는 내용이라도 파이썬 기초 지식이라면 답변해도 좋지만, 
-       가능하면 우리 강의 자료의 예시를 활용해서 설명해줘.
-    4. 답변 끝에는 관련된 강의 파일명(source)을 언급해서 학생이 찾아볼 수 있게 해줘.
+    1. 말투는 친절하고 격려하는 어조로 해줘.
+    2. 우리 강의 자료(lecture 폴더)의 예시 코드를 최우선으로 활용해서 설명해줘.
+    3. 만약 강의 자료에 없는 내용이라면 일반적인 파이썬 지식으로 답변하되, 우리 수업 범위 내인지 언급해줘.
+    4. 답변 끝에는 참고한 강의 파일명(source)을 반드시 언급해줘.
 
     <context>
     {context}
